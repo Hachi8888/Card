@@ -13,11 +13,11 @@ class XIBTableViewCell: UITableViewCell {
     // 画像表示用
     @IBOutlet weak var xibImage: UIImageView!
     // 名前表示用ラベル
-    @IBOutlet weak var xibNameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     // 職業表示用ラベル
-    @IBOutlet weak var xibWorkLabel: UILabel!
+    @IBOutlet weak var jobLabel: UILabel!
     // 出身地表示用ラベル
-    @IBOutlet weak var xibHomeLabel: UILabel!
+    @IBOutlet weak var fromLabel: UILabel!
     
     
     

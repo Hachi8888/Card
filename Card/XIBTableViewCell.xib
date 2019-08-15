@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="127" id="KGk-i7-Jjw" customClass="XIBTableViewCell" customModule="Card" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="127" id="KGk-i7-Jjw" customClass="XIBTableViewCell" customModule="Card" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="349" height="127"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -60,20 +60,12 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="xibHomeLabel" destination="Ypd-nO-iiZ" id="pdb-C1-jlr"/>
+                <outlet property="fromLabel" destination="Ypd-nO-iiZ" id="pdb-C1-jlr"/>
+                <outlet property="jobLabel" destination="7vU-yo-znn" id="fjA-1p-QIt"/>
+                <outlet property="nameLabel" destination="avY-ao-q0u" id="ujy-aj-nca"/>
                 <outlet property="xibImage" destination="y5M-Jn-SHo" id="yUk-mE-auP"/>
-                <outlet property="xibNameLabel" destination="avY-ao-q0u" id="ujy-aj-nca"/>
-                <outlet property="xibWorkLabel" destination="7vU-yo-znn" id="fjA-1p-QIt"/>
             </connections>
             <point key="canvasLocation" x="477.536231884058" y="19.754464285714285"/>
         </tableViewCell>
-        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pbr-Dp-LoX">
-            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-            <nil key="textColor"/>
-            <nil key="highlightedColor"/>
-            <point key="canvasLocation" x="857.97101449275374" y="-51.227678571428569"/>
-        </label>
     </objects>
 </document>
