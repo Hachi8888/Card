@@ -9,7 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    // いいねリストに表示するセル(Xibで作成)
+    @IBOutlet weak var xibVC: UITableView!
+    
     // viewの動作をコントロールする
     @IBOutlet weak var baseCard: UIView!
     // スワイプ中にgood or bad の表示
