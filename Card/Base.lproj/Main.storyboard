@@ -306,7 +306,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="いいね!しよう" id="OAo-se-P3x"/>
+                    <navigationItem key="navigationItem" title="いいね!しよう" id="OAo-se-P3x">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="byM-cM-6XJ"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="baseCard" destination="KFX-1B-6vk" id="kN8-3M-3dm"/>
                         <outlet property="likeImage" destination="Njy-qQ-WMP" id="BEp-4f-DE6"/>

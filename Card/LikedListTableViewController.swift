@@ -15,7 +15,7 @@ class LikedListTableViewController: UITableViewController {
     var likedJob: [String] = []
     var likedFrom: [String] = []
 
-
+    // XIBTableViewCellのファイルを読み込む
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +34,7 @@ class LikedListTableViewController: UITableViewController {
         return 75
     }
 
-    // 必須:セルの設定
+    // 必須:セルの設定(型をXIBTableViewCellにする)
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! XIBTableViewCell
 

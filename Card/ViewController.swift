@@ -32,13 +32,13 @@ class ViewController: UIViewController {
     let nameList: [String] = ["津田梅子","ジョージワシントン","ガリレオガリレイ","板垣退助","ジョン万次郎"]
     // 「いいね」をされた名前の配列
     var likedName: [String] = []
-    // ★仕事リスト
+    // 仕事リスト
     let jobList: [String] = ["教師","大統領","物理学者","議員","冒険家"]
-    // ★「いいね」をされた仕事の配列
+    // 「いいね」をされた仕事の配列
     var likedJob: [String] = []
-    // ★ 出身地リスト
+    // 出身地リスト
     let fromList: [String] = ["千葉","アメリカ","イタリア","高知","アメリカ"]
-    // ★「いいね」をされた出身の配列
+    // 「いいね」をされた出身の配列
     var likedFrom: [String] = []
 
     // viewのレイアウト処理が完了した時に呼ばれる
@@ -142,7 +142,6 @@ class ViewController: UIViewController {
                     // 左へ飛ばす場合
                     // X座標を左に500とばす(-500)
                     self.personList[self.selectedCardCount].center = CGPoint(x: self.personList[self.selectedCardCount].center.x - 500, y :self.personList[self.selectedCardCount].center.y)
-
                 })
                 // ベースカードの角度と位置を戻す
                 resetCard()
@@ -151,9 +150,13 @@ class ViewController: UIViewController {
                 // 次のカードへ
                 selectedCardCount += 1
 
-                if selectedCardCount >= personList.count {
-                    // 遷移処理
-                    performSegue(withIdentifier: "ToLikedList", sender: self)
+                // 最後の人までボタンを押したら画面遷移する
+                if self.selectedCardCount >= self.personList.count {
+                    if self.likedName.isEmpty { // 誰に対してもいいねを押さなかったとき
+                        self.performSegue(withIdentifier: "NoLikeList", sender: nil)
+                    } else { // 一人以上はいいねを押しているとき
+                        self.performSegue(withIdentifier: "ToLikedList", sender: self)
+                    }
                 }
 
             } else if card.center.x > self.view.frame.width - 50 {
@@ -162,7 +165,6 @@ class ViewController: UIViewController {
                     // 右へ飛ばす場合
                     // X座標を右に500とばす(+500)
                     self.personList[self.selectedCardCount].center = CGPoint(x: self.personList[self.selectedCardCount].center.x + 500, y :self.personList[self.selectedCardCount].center.y)
-
                 })
                 // ベースカードの角度と位置を戻す
                 resetCard()
