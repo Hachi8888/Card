@@ -10,11 +10,16 @@ import UIKit
 
 class LikedListTableViewController: UITableViewController {
 
-    // いいね」された名前の一覧
+    // いいね」された名前、職業、出身地の一覧
     var likedName: [String] = []
+    var likedJob: [String] = []
+    var likedFrom: [String] = []
 
+    // XIBTableViewCellのファイルを読み込む
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.tableView.register(UINib(nibName: "XIBTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
     }
 
     // MARK: - Table view data source
@@ -25,12 +30,20 @@ class LikedListTableViewController: UITableViewController {
         return likedName.count
     }
 
-    // 必須:セルの設定
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
 
-        // いいねされた名前を表示
-        cell.textLabel?.text = likedName[indexPath.row]
+    // 必須:セルの設定(型をXIBTableViewCellにする)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! XIBTableViewCell
+
+        // いいねされた名前、職業、出身地をセルのラベルに表示
+        cell.nameLabel.text = likedName[indexPath.row]
+        cell.jobLabel.text = likedJob[indexPath.row]
+        cell.fromLabel.text = likedFrom[indexPath.row]
+        cell.xibImage.image = UIImage(named: likedName[indexPath.row])
+
         return cell
     }
 

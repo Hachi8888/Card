@@ -9,7 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    // いいねリストに表示するセル(Xibで作成)
+    @IBOutlet weak var xibVC: UITableView!
     // viewの動作をコントロールする
     @IBOutlet weak var baseCard: UIView!
     // スワイプ中にgood or bad の表示
@@ -31,7 +32,14 @@ class ViewController: UIViewController {
     let nameList: [String] = ["津田梅子","ジョージワシントン","ガリレオガリレイ","板垣退助","ジョン万次郎"]
     // 「いいね」をされた名前の配列
     var likedName: [String] = []
-
+    // 仕事リスト
+    let jobList: [String] = ["教師","大統領","物理学者","議員","冒険家"]
+    // 「いいね」をされた仕事の配列
+    var likedJob: [String] = []
+    // 出身地リスト
+    let fromList: [String] = ["千葉","アメリカ","イタリア","高知","アメリカ"]
+    // 「いいね」をされた出身の配列
+    var likedFrom: [String] = []
 
     // viewのレイアウト処理が完了した時に呼ばれる
     override func viewDidLayoutSubviews() {
@@ -56,6 +64,8 @@ class ViewController: UIViewController {
         selectedCardCount = 0
         // リスト初期化
         likedName = []
+        likedJob = []
+        likedFrom = []
     }
 
     // セグエによる遷移前に呼ばれる
@@ -64,8 +74,10 @@ class ViewController: UIViewController {
         if segue.identifier == "ToLikedList" {
             let vc = segue.destination as! LikedListTableViewController
 
-            // LikedListTableViewControllerのlikedName(左)にViewCountrollewのLikedName(右)を代入
+            // LikedListTableViewControllerのlikedName,likedJob,likedFrom(左)にViewCountrollewのLikedName,likedJob,likedFrom(右)を代入
             vc.likedName = likedName
+            vc.likedJob = likedJob
+            vc.likedFrom = likedFrom
         }
     }
 
@@ -130,7 +142,6 @@ class ViewController: UIViewController {
                     // 左へ飛ばす場合
                     // X座標を左に500とばす(-500)
                     self.personList[self.selectedCardCount].center = CGPoint(x: self.personList[self.selectedCardCount].center.x - 500, y :self.personList[self.selectedCardCount].center.y)
-
                 })
                 // ベースカードの角度と位置を戻す
                 resetCard()
@@ -139,9 +150,13 @@ class ViewController: UIViewController {
                 // 次のカードへ
                 selectedCardCount += 1
 
-                if selectedCardCount >= personList.count {
-                    // 遷移処理
-                    performSegue(withIdentifier: "ToLikedList", sender: self)
+                // 最後の人までボタンを押したら画面遷移する
+                if self.selectedCardCount >= self.personList.count {
+                    if self.likedName.isEmpty { // 誰に対してもいいねを押さなかったとき
+                        self.performSegue(withIdentifier: "NoLikeList", sender: nil)
+                    } else { // 一人以上はいいねを押しているとき
+                        self.performSegue(withIdentifier: "ToLikedList", sender: self)
+                    }
                 }
 
             } else if card.center.x > self.view.frame.width - 50 {
@@ -149,8 +164,7 @@ class ViewController: UIViewController {
                 UIView.animate(withDuration: 0.5, animations: {
                     // 右へ飛ばす場合
                     // X座標を右に500とばす(+500)
-                self.personList[self.selectedCardCount].center = CGPoint(x: self.personList[self.selectedCardCount].center.x + 500, y :self.personList[self.selectedCardCount].center.y)
-
+                    self.personList[self.selectedCardCount].center = CGPoint(x: self.personList[self.selectedCardCount].center.x + 500, y :self.personList[self.selectedCardCount].center.y)
                 })
                 // ベースカードの角度と位置を戻す
                 resetCard()
@@ -158,6 +172,9 @@ class ViewController: UIViewController {
                 likeImage.isHidden = true
                 // いいねリストに追加
                 likedName.append(nameList[selectedCardCount])
+                likedJob.append(jobList[selectedCardCount])
+                likedFrom.append(fromList[selectedCardCount])
+
                 // 次のカードへ
                 selectedCardCount += 1
                 
@@ -193,9 +210,13 @@ class ViewController: UIViewController {
         })
 
         selectedCardCount += 1
-        // 画面遷移
+        // 最後の人までボタンを押したら画面遷移する
         if selectedCardCount >= personList.count {
-            performSegue(withIdentifier: "ToLikedList", sender: self)
+            if likedName.isEmpty { // 誰に対してもいいねを押さなかったとき
+                performSegue(withIdentifier: "NoLikeList", sender: nil)
+            } else { // 一人以上はいいねを押しているとき
+                performSegue(withIdentifier: "ToLikedList", sender: self)
+            }
         }
     }
 
@@ -208,6 +229,9 @@ class ViewController: UIViewController {
         })
         // いいねリストに追加
         likedName.append(nameList[selectedCardCount])
+        likedJob.append(jobList[selectedCardCount])
+        likedFrom.append(fromList[selectedCardCount])
+
         selectedCardCount += 1
         // 画面遷移
         if selectedCardCount >= personList.count {
@@ -215,4 +239,3 @@ class ViewController: UIViewController {
         }
     }
 }
-
